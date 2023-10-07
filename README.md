@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Foodbox
 
 ## Description
@@ -61,3 +62,7 @@ It deals with the user activities. The end-user should be able to:
 - Add all the selected food items to a cart and customize the purchase at the end
 - Perform a seamless payment process
 - Get an order summary details page once the payment is complete
+=======
+# FoodBox
+Full stack devops project
+>>>>>>> 6124a4a (Initial commit)
