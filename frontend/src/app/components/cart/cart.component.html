@@ -1,0 +1,29 @@
+<div class="container" style="padding-left: 70px">
+  <div class="col-xxl-12 col-xl-9 col-lg-10 col-md-11 col-sm-12 m-auto">
+    <h3 *ngIf="orders.length == 0" class=" m-auto display-2 border-0 text-center  mt-5">
+      Cart is empty!
+    </h3>
+    <button *ngIf="orders.length > 0" class="btn btn-warning m-4" (click)="clear()">Clear Cart</button>
+
+
+    <div *ngIf="orders.length > 0" class="card m-4 border-0 " >
+      <div *ngFor="let order of orders" class="list-group mb-5">
+
+      <ul *ngFor="let item of order" class="list-group">
+
+        <li class="list-group-item">
+
+          <b>{{ ProductNames.get(item.productId) }}(s)</b>
+
+          <b class="ms-5 ">$</b>{{ item.price ? item.price.toString() : '' }}
+          <input type="number" class="d-inline float-end form-control quantity-field border-2 ms-2  " style="width: 8ch" min="1" step="1" max="10" [value]="item.quantity">
+          <button class="btn  float-end text-light" (click)="onDelete(item)" style="background-color: #EF0B01">Delete</button>
+        </li>
+      </ul>
+              <button *ngIf="orders.length > 0" class="btn float-end my-2 text-light" routerLink="checkout"
+                routerLinkActive="router-link-active" style="background-color: #EF0B01">Order</button>
+
+      </div>
+    </div>
+  </div>
+</div>

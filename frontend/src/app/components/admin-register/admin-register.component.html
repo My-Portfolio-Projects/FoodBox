@@ -1,0 +1,71 @@
+<div class="container-fluid px-1 py-5 m-auto ">
+  <div class="row d-flex justify-content-left">
+    <div class="col-xxl-6 col-xl-5 col-lg-6 col-md-7 col-sm-8 m-auto shadow p-4 rounded-0 ">
+      <form (ngSubmit)="onSubmit()" #r="ngForm" class="container">
+
+        <div class="display-5 text-center m-4">SignUp as an Admin</div>
+
+
+        <div class="row justify-content-between text-left m-3">
+
+          <div class="form-group col-sm-6 flex-column d-flex align-items-start">
+            <label for="email">Email</label>
+            <input type="email" class="form-control rounded-0" id="email" placeholder="email" ngModel name="email" required email
+                   #email="ngModel">
+            <span class="help-block text-danger" *ngIf="!email.valid && email.touched" id="emailHelp">Please enter a valid
+          email</span>
+          </div>
+
+
+
+
+        </div>
+        <div class="row justify-content-between text-left m-3">
+
+          <div class="form-group col-sm-6 flex-column d-flex align-items-start">
+            <label for="password">Password</label>
+            <input type="password" class="form-control rounded-0" id="password" placeholder="Password" autocomplete="off" ngModel
+                   [(ngModel)]="this.admin.password" name="password" required #password="ngModel" minlength="6">
+            <span class="help-block text-danger" *ngIf="!password.valid && password.touched" id="passHelp">Please enter a valid password</span>
+          </div>
+
+
+
+
+          <div class="form-group col-sm-6 flex-column d-flex align-items-start">
+            <label for="confirm-password"> Confirm Password</label>
+
+            <input type="password" class="form-control rounded-0" placeholder="Confirm Password" autocomplete="off"
+                   id="confirm-password" [(ngModel)]="this.reenter" name="confirm-password" required #confirmPassword="ngModel"
+                   minlength="6">
+
+
+            <span class="help-block text-danger" *ngIf=" confirmPassword.touched && !this.matched"
+                  id="confirmPassHelp">Password
+          does not match</span>
+          </div></div>
+
+
+
+
+
+
+        <div class="form-group form-check m-3">
+
+          <input type="checkbox" class="form-check-input rounded-0" id="terms" ngModel name="checkbox" required>
+          <label class="form-check-label" for="terms">I accept the <a href="#">Terms of
+            service</a> and <a href="#">Privacy
+            policy</a></label>
+        </div>
+        <div class="d-grid m-3">
+          <button type="submit" [disabled]="!r.valid || !this.matched" class="btn  btn-block text-light  rounded-0" style="background-color: #EF0B01">Register</button>
+
+        </div>
+        <span class="help-block m-3" id="loginHelp">Already an admin?
+                <a [routerLink]="['admin/login']" routerLinkActive="router-link-active">Login as admin</a>
+            </span>
+      </form>
+    </div>
+  </div>
+</div>
+

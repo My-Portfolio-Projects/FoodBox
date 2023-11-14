@@ -1,0 +1,72 @@
+<div class="container-fluid p-3" >
+  <main>
+    <div class="row justify-content-start  h-100" style="padding-left: 70px" >
+      <div class="col-lg-4 col-md-10 col-sm-12 justify-content-center">
+        <ul class="list-group m-3 ">
+          <form  (ngSubmit)="onSubmit()">
+
+            <li class="list-group-item">
+                <h5 class="brand-color input-group">Add New Item</h5>
+            </li>
+
+            <li class="list-group-item d-flex  lh-sm align-items-center border-bottom-0 border-top-0 flex-wrap ">
+              <img [src]="this.image" class="d-block" alt="Image preview">
+              <div class="input-group">
+                <input type="file" class="form-control rounded-0"  id="image" name="file" (change)="onImageFileSelected($event)"/>
+              </div>
+            </li>
+
+            <li class="list-group-item d-flex  lh-sm align-items-center border-bottom-0 border-top-0"><label>Name</label></li>
+            <li class="list-group-item d-flex  lh-sm align-items-center border-bottom-0 border-top-0">
+              <div class="input-group ">
+                <input type="text" class="form-control rounded-0" placeholder="Enter Product Name" name="name" [(ngModel)]="newProduct.name">
+              </div>
+            </li>
+            <li class="list-group-item d-flex  lh-sm align-items-center border-bottom-0 border-top-0"><label>Description</label></li>
+
+            <li class="list-group-item d-flex justify-content-between lh-sm align-items-center border-bottom-0 border-top-0">
+              <div class="input-group ">
+                <textarea class="form-control rounded-0" name="desc" placeholder="Enter Description" [(ngModel)]="newProduct.description"></textarea>
+              </div>
+            </li>
+
+            <li class="list-group-item d-flex  lh-sm align-items-center ">
+              <div class="input-group me-5">
+                <span class="input-group-text rounded-0">$</span>
+                <input type="number" class="form-control rounded-0"  name="price" placeholder="Price" required [(ngModel)]="newProduct.price">
+              </div>
+
+              <!--            <li class="list-group-item d-flex justify-content-between lh-sm align-items-center">-->
+              <!--              <div class="input-group ">-->
+              <!--                <span class="input-group-text"><i class="bi bi-percent"></i></span>-->
+              <!--                <input type="number" class="form-control" name="offer" placeholder="Offer" [(ngModel)]="newProduct.offer">-->
+              <!--              </div>-->
+              <div class="input-group ms-5 ">
+                <span class="input-group-text rounded-0"><i>#</i></span>
+                <input type="number" class="form-control rounded-0" name="quantity" placeholder="Quantity" [(ngModel)]="newProduct.quantityInStock">
+              </div>
+            </li>
+
+
+            <li class="list-group-item d-flex lh-sm align-items-center">
+              <div class="input-group ">
+                <input type="submit" class="btn text-light form-control" style="background-color: #EF0B01" value="Add">
+              </div>
+            </li>
+          </form>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <!-- <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2023 FoodBox</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="#" class="text-decoration-none text-dark">Privacy</a></li>
+      <li class="list-inline-item"><a href="#" class="text-decoration-none text-dark">Terms</a></li>
+      <li class="list-inline-item"><a href="#" class="text-decoration-none text-dark">Support</a></li>
+    </ul>
+  </footer> -->
+</div>
+
+
