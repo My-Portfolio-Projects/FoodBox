@@ -7,8 +7,8 @@ pipeline {
                 script {
                     // Move into the frontend directory
                     dir('frontend') {
-                        sh 'npm.cmd install'
-                        sh 'npm.cmd run build'
+                        bat 'npm.cmd install'
+                        bat 'npm.cmd run build'
                     }
                 }
             }
@@ -19,7 +19,7 @@ pipeline {
                 script {
                     // Move into the backend directory
                     dir('backend') {
-                        sh './mvnw clean package'
+                        bat './mvnw clean package'
                     }
                 }
             }
@@ -30,12 +30,12 @@ pipeline {
                 script {
                     // Build Angular Docker image
                     dir('frontend') {
-                        sh 'docker build -t angular-app:latest .'
+                        bat'docker build -t angular-app:latest .'
                     }
 
                     // Build Spring Boot Docker image
                     dir('backend') {
-                        sh 'docker build -t spring-boot-app:latest .'
+                        bat'docker build -t spring-boot-app:latest .'
                     }
                 }
             }
@@ -45,7 +45,7 @@ pipeline {
             steps {
                 script {
                     // Use Docker Compose to run the containers
-                    sh 'docker-compose up -d'
+                    bat'docker-compose up -d'
                 }
             }
         }
