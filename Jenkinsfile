@@ -7,8 +7,8 @@ pipeline {
                 script {
                     // Move into the frontend directory
                     dir('frontend') {
-                        sh 'npm install'
-                        sh 'ng build'
+                        sh 'npm.cmd install'
+                        sh 'npm.cmd run build'
                     }
                 }
             }
