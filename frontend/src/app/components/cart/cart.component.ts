@@ -31,7 +31,7 @@
           this.getItemNames();
         })
       });
-    } 
+    }
 
     getItemNames() {
       for (let order of this.orders) {
@@ -44,7 +44,10 @@
       }
     }
 
-  getItemDesc(productId: number):string {return this.http.get<Product>("/api/products/" + productId).subscribe((product) => {return product.description;}).toString();}
+    getItemDesc(productId: number): string {
+      return this.http.get<Product>("/api/products/" + productId).subscribe((product) =>
+      { return product.description; }).toString();
+    }
   onDelete(item: OrderItem) {this.http.delete("/api/orderItems/" + item.productId);}
   clear() {this.http.delete("/api/orderItems");}
   public add(item: OrderItem) {this.http.post("/api/orderItems", item);}

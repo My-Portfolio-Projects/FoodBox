@@ -38,10 +38,12 @@ export class AdminRegisterComponent {
     this.admin.email = this.registerForm.value.email;
     this.admin.password = this.registerForm.value.password;
     this.submitted = true;
-    this.registerForm.reset();
-    this.http.post('/admins',this.admin )
+    console.log(this.admin)
+    this.http.post('api/admin/register',this.admin )
       .subscribe((registerResponse: any) => {
         console.log(registerResponse)
+        this.registerForm.reset();
+
       });
 
   }

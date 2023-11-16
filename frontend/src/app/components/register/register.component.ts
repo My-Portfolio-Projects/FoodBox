@@ -16,7 +16,6 @@ export class RegisterComponent {
   @ViewChild('r') registerForm!: NgForm;
   @Output() registerEvent = new EventEmitter<Customer>;
 
-  submitted: boolean;
   public customer!: Customer;
   public matched: boolean;
   public reenter: any;
@@ -24,7 +23,6 @@ export class RegisterComponent {
   constructor(private http: HttpClient) {
     this.customer = new Customer();
     this.matched = false;
-    this.submitted = false;
   }
   ngDoCheck(): void {
     this.matched = this.reenter === this.customer.password;
@@ -38,11 +36,11 @@ export class RegisterComponent {
     this.customer.password = this.registerForm.value.password;
     this.customer.address = this.registerForm.value.address;
     this.customer.phoneNumber = this.registerForm.value.phoneNumber
-    this.submitted = true;
-    this.registerForm.reset();
-    this.http.post('/customers',this.customer )
+    console.log(this.customer);
+    this.http.post('api/customers', JSON.stringify(this.customer), { headers: { 'Content-Type': 'application/json' } })
       .subscribe(registerResponse => {
         console.log(registerResponse)
+        this.registerForm.reset();
       });
 
   }

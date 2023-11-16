@@ -36,7 +36,7 @@ public class AdminController {
         else throw new NotFoundException("Admin Not Found!");
     }
 
-    @PostMapping("/admins")
+    @PostMapping("/admin/register")
     public Admin createAdmin(@RequestBody Admin admin) {
         return adminService.createAdmin(admin);
     }

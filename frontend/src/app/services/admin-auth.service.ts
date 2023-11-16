@@ -6,12 +6,12 @@ import { Injectable } from '@angular/core';
 export class AdminAuthService {
 
   setLoggedIn(){
-    localStorage.setItem("isLoggedIn","true");
+    localStorage.setItem("adminIsLoggedIn","true");
   }
   isLoggedIn(){
-    return localStorage.getItem("isLoggedIn");
+    return localStorage.getItem("adminIsLoggedIn");
   }
   setLoggedOut(){
-    localStorage.setItem("isLoggedIn","false");
+    localStorage.setItem("adminIsLoggedIn","false");
   }
 }

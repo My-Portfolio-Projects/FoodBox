@@ -45,9 +45,11 @@
 
           <div class="form-group col-sm-6 flex-column d-flex align-items-start">
             <label for="password">Password</label>
-            <input type="password" class="form-control rounded-0" id="password" placeholder="Password" autocomplete="off" ngModel
-                   [(ngModel)]="this.customer.password" name="password" required #password="ngModel" minlength="6">
-            <span class="help-block text-danger" *ngIf="!password.valid && password.touched" id="passHelp">Please enter a valid password</span>
+            <input type="password" class="form-control rounded-0" id="password" placeholder="Password" autocomplete="off"
+              [(ngModel)]="customer.password" name="password" required #passwordControl="ngModel" minlength="6">
+            <span class="help-block text-danger" *ngIf="!passwordControl.valid && passwordControl.touched" id="passHelp">
+              Please enter a valid password
+            </span>
           </div>
 
 
@@ -57,11 +59,11 @@
             <label for="confirm-password"> Confirm Password</label>
 
             <input type="password" class="form-control rounded-0" placeholder="Confirm Password" autocomplete="off"
-                   id="confirm-password" [(ngModel)]="this.reenter" name="confirm-password" required #confirmPassword="ngModel"
+                   id="confirm-password" [(ngModel)]="reenter" name="confirm-password" required #confirmPassword="ngModel"
                    minlength="6">
 
 
-            <span class="help-block text-danger" *ngIf=" confirmPassword.touched && !this.matched"
+            <span class="help-block text-danger" *ngIf=" confirmPassword.touched && !matched"
                   id="confirmPassHelp">Password
           does not match</span>
           </div></div>
@@ -89,7 +91,7 @@
             policy</a></label>
         </div>
         <div class="d-grid m-3">
-          <button type="submit" [disabled]="!r.valid || !this.matched" class="btn  btn-block text-light  rounded-0" style="background-color: #EF0B01">Register</button>
+          <button type="submit" [disabled]="!r.valid || !matched" class="btn  btn-block text-light  rounded-0" style="background-color: #EF0B01">Register</button>
 
         </div>
         <span class="help-block m-3" id="loginHelp">Already a user?

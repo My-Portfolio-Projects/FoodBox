@@ -24,7 +24,7 @@
 
           <div class="form-group col-sm-6 flex-column d-flex align-items-start">
             <label for="password">Password</label>
-            <input type="password" class="form-control rounded-0" id="password" placeholder="Password" autocomplete="off" ngModel
+            <input type="password" class="form-control rounded-0" id="password" placeholder="Password" autocomplete="off"
                    [(ngModel)]="this.admin.password" name="password" required #password="ngModel" minlength="6">
             <span class="help-block text-danger" *ngIf="!password.valid && password.touched" id="passHelp">Please enter a valid password</span>
           </div>
@@ -62,7 +62,7 @@
 
         </div>
         <span class="help-block m-3" id="loginHelp">Already an admin?
-                <a [routerLink]="['admin/login']" routerLinkActive="router-link-active">Login as admin</a>
+                <a routerLink="/admin/login" routerLinkActive="router-link-active">Login as admin</a>
             </span>
       </form>
     </div>
