@@ -53,9 +53,8 @@ public class ImageController {
 
     @PostMapping(value = "/image",consumes = MediaType.MULTIPART_FORM_DATA_VALUE )
     public ResponseEntity<Integer> createImage(@RequestPart("image") MultipartFile data) throws IOException {
-        String name = data.getOriginalFilename();
-        Image image = imageService.createImage(name, data.getBytes());
-        return ResponseEntity.ok(image.getId());
+        Image image = imageService.createImage( data.getBytes());
+        return ResponseEntity.ok(image.getImageId());
         }
 
 

@@ -1,5 +1,3 @@
-
-
 <div class="container" style="padding-left:70px;">
   <main>
     <div class="py-5 text-center">
@@ -14,34 +12,30 @@
         </h4>
         <ul class="list-group mb-3 rounded-0">
           <li *ngFor="let order of items" class="list-group-item d-flex justify-content-between lh-sm ">
-            <div *ngFor="let item of order">
-              <div>
-                <h6 class="my-0">{{getItemName(item.productId)}}</h6>
-                <small class="text-muted">{{getItemDesc(item.productId)}}</small>
+            <div *ngFor="let item of order" class="w-100 d-flex justify-content-between">
+              <div >
+                <h6 class="my-0">{{ProductNames.get(item.productId)}}</h6>
+                <small class="text-muted">{{item.quantity}}</small>
               </div>
               <span class="text-muted">${{item.price}}</span>
             </div>
+
           </li>
 
           <li class="list-group-item d-flex justify-content-between bg-light ">
             <div class="text-success">
-              <h6 class="my-0">Promo code</h6>
-              <small>EXAMPLECODE</small>
+              <h6 class="my-0">Discount</h6>
+              <small></small>
             </div>
-            <span class="text-success">−$5</span>
+            <span class="text-success">-$5</span>
           </li>
           <li class="list-group-item d-flex justify-content-between">
             <span>Total (USD)</span>
-            <strong>${{amount}}</strong>
+            <strong>${{this.getAmount()}}</strong>
           </li>
         </ul>
 
-        <form class="card p-2 rounded-0">
-          <div class="input-group ">
-            <input type="text" class=" form-control rounded-0" placeholder="Promo code">
-            <button type="submit" class="btn btn-secondary rounded-0">Redeem</button>
-          </div>
-        </form>
+
       </div>
       <div class="col-md-7 col-lg-8">
         <h4 class="mb-3">Billing address</h4>
@@ -130,72 +124,23 @@
             <label class="form-check-label" for="save-info">Save this information for next time</label>
           </div>
 
-          <hr class="my-4">
 
-          <h4 class="mb-3">Payment</h4>
 
         </form>
 
 
-                           <div class="row gy-3" >
-                               <div class="col-md-6">
-                                   <label for="cc-name" class="form-label">Name on card</label>-->
-                                   <input type="text" class=" form-control rounded-0" id="cc-name" formControlName="name" required>
-                                   <small class="text-muted">Full name as displayed on card</small>
-                                   <div class="invalid-feedback">
-                                       Name on card is required
-                                   </div>
-                                </div>
-
-                               <div class="col-md-6">-->
-                                   <label for="cc-amount" class="form-label">Credit amount</label>
-                                   <input type="number" class=" form-control rounded-0" id="cc-amount" formControlName="amount" required>
-                                   <div class="invalid-feedback">
-                                       Credit card number is required
-                                   </div>
-                               </div>
-                               <div class="col-md-6">
-                                   <label for="cc-number" class="form-label">Credit card number</label>
-                                   <input type="number"  class=" form-control rounded-0" id="cc-number"  />
-                                   <div class="invalid-feedback">
-                                       Credit card number is required
-                                   </div>
-                               </div>
-
-                               <div class="col-md-3">
-                                   <label for="cc-expiration-month" class="form-label">Expiration</label>
-                                   <input type="number" class=" form-control rounded-0" id="cc-expiration-month"/>
-                                   <div class="invalid-feedback">
-                                       Expiration date required
-                                   </div>
-                               </div>
-
-                               <div class="col-md-3">
-                                   <label for="cc-cvc" class="form-label">CVC</label>
-                                   <input type="number" class=" form-control rounded-0" id="cc-cvc"/>
-                                   <div class="invalid-feedback">
-                                       Security code required
-                                   </div>
-                               </div>
-                               </div>
 
 
 
-                               <button type="submit" class="my-4 w-100 btn btn-lg text-light p-2 rounded-0"
-                                       style="background-color: #EF0B01;"
-                                       >PAY</button>
+
+        <button type="submit" class="my-4 w-100 btn btn-lg text-light p-2 rounded-0"
+          style="background-color: #EF0B01;" (click) = "onPayment()" >PAY</button>
 
 
       </div>
     </div>
   </main>
 
-  <footer class="my-5 pt-5 text-muted text-center text-small">
-    <p class="mb-1">&copy; 2017–2021 Company Name</p>
-    <ul class="list-inline">
-      <li class="list-inline-item"><a href="#">Privacy</a></li>
-      <li class="list-inline-item"><a href="#">Terms</a></li>
-      <li class="list-inline-item"><a href="#">Support</a></li>
-    </ul>
-  </footer>
+
+
 </div>

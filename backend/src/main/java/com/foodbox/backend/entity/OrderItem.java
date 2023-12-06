@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
 @Getter
 @Setter
@@ -32,16 +31,7 @@ public class OrderItem {
     private BigDecimal price;
 
 
-    @Override
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
-        OrderItem that = (OrderItem) object;
-        return orderItemId == that.orderItemId && orderId == that.orderId && productId == that.productId && quantity == that.quantity && Objects.equals(price, that.price);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(orderItemId, orderId, productId, quantity, price);
-    }
+
+    
 }

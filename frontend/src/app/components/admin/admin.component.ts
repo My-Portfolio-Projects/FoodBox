@@ -5,6 +5,7 @@
   import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
   import { Observable, switchMap } from 'rxjs';
   import { MenuComponent } from "../menu/menu.component";
+import { Customer } from '../../models/Customer';
 
   @Component({
     selector: 'app-admin',
@@ -17,17 +18,21 @@
 
 
   export class AdminComponent {
+
+
     products: Product[] = [];
 
     image!: File;
     newProduct: Product = new Product();
-
-    searchKeyword: string = '';
-    sort: string = '';
-    filter: string = '';
+    Customers: Customer[] = [];
+    newCustomer: Customer = new Customer();
     headers = new HttpHeaders().set('content-type', 'multipart/form-data');
     constructor(private http: HttpClient) { }
-    ngOnInit() { this.getAll().subscribe((products: Product[]) => { this.products = products; }); }
+    ngOnInit() {
+      this.http.get<Customer[]>("/api/customers").subscribe((customers) => {
+        this.Customers = customers;
+      });
+     }
     onSubmit() { this.addItem(this.newProduct, this.image); }
 
 
@@ -41,7 +46,13 @@
           console.log("This is imageid:" + imageId);
           const addProduct = {
             "description": `${product.description}`,
-            "imageId": `${imageId}`, // Use the updated imageId from the response
+            "imageId": {
+              "image": {
+                "imageData": imageData,
+                "imageId":imageId
+
+              }
+            }, // Use the updated imageId from the response
             "name": `${product.name}`,
             "price": `${product.price}`,
             "quantityInStock": `${product.quantityInStock}`,
@@ -56,49 +67,18 @@
 
 
     addImage(formData: FormData): Observable<number> { return this.http.post<number>("/api/image", formData); }
-
     onImageFileSelected(event: any) { this.image = event.target.files[0]; }
+    deleteItem(item: Product) { this.http.delete("/api/products/" + {item}).subscribe((response) => { console.log(response); }); }
+    updateItem(item: Product) { this.updateItem(item); this.http.put("/api/products/", { item }).subscribe((response) => { console.log(response); window.location.reload(); }); }
 
-
-    onSearch(): void {
-      if (this.searchKeyword.trim() === '') { this.getAll().subscribe((products: Product[]) => { this.products = products; }); }
-      else { this.search(this.searchKeyword).subscribe((products: Product[]) => { this.products = products; }); }
+    onUpdate(customer: Customer) {
+      this.http.put("/api/customers/" + customer.customerId,customer).subscribe((response)=>{console.log(response)})
     }
-
-
-    search(keyword: string): Observable<Product[]> { return this.http.get<Product[]>('/api/search/' + keyword); }
-    getAll() { return this.http.get<Product[]>('/api/products'); }
-
-    deleteItem(item: Product) { this.http.delete("/api/products/" + { item }).subscribe((response) => { console.log(response); }); }
-
-    updateItem(item: Product) { this.updateItem(item); this.http.put("/api/products/", { item }).subscribe((response) => { console.log(response); }); }
-
-    onSort() {
-      switch (this.sort) {
-        case '0':
-          this.products.sort((a, b) => a.name.localeCompare(b.name));
-          break;
-        case '1':
-          this.products.sort((a, b) => b.name.localeCompare(a.name));
-          break;
-        case '2':
-          this.products.sort((a, b) => a.price - b.price);
-          break;
-        case '3':
-          this.products.sort((a, b) => b.price - a.price);
-          break;
-      }
+    onDelete(customer: Customer) {
+      this.http.delete("/api/customers/" + customer.customerId).subscribe((response) => { console.log(response); window.location.reload(); })
     }
-
-    onFilter() {
-      switch (this.filter) {
-        case '0':
-          this.products.sort((a, b) => a.quantityInStock - b.quantityInStock);
-          break;
-        case '1':
-          this.products.sort((a, b) => b.quantityInStock - a.quantityInStock);
-          break;
-      }
+    onAdd(customer: Customer) {
+      this.http.post("/api/customers", customer).subscribe((response) => { console.log(response); window.location.reload(); })
     }
   }
 

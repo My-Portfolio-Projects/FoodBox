@@ -37,8 +37,14 @@ public class OrderController {
         return orderService.updateOrder(orderId, order);
     }
 
-    @DeleteMapping("/orders/{orderId}")
-    public void deleteOrder(@PathVariable  int orderId) {
+    @DeleteMapping("/order/{orderId}")
+    public void deleteOrder(@PathVariable int orderId) {
         orderService.deleteOrder(orderId);
     }
+
+    @DeleteMapping("/orders/{customerId}")
+    public void deleteOrders(@PathVariable int customerId) {
+        orderService.deleteOrders(customerId);
+    }
+    
 }

@@ -42,7 +42,7 @@ public class OrderItemController {
     }
 
     @PutMapping("/orderItems/{orderItemId}")
-    public OrderItem updateOrderItem(@PathVariable   int orderItemId, @RequestBody OrderItem orderItem) {
+    public OrderItem updateOrderItem(@PathVariable int orderItemId, @RequestBody OrderItem orderItem) {
         return orderItemService.updateOrderItem(orderItemId, orderItem);
     }
 

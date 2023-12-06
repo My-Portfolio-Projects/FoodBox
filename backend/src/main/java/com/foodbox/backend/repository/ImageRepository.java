@@ -12,12 +12,15 @@ import java.util.List;
 
 @Repository
 public interface ImageRepository extends CrudRepository<Image, Integer> {
+    
     @Transactional
     @Modifying
-    @Query("update Image i set i.imageData = ?1 where i.id = ?2")
-    void updateImageDataById(@Nullable byte[] imageData, @Nullable Integer id);
-    Image getImageById(int imageId);
+    @Query("update Image i set i.imageData = ?1 where i.imageId = ?2")
+    void updateImage(@Nullable byte[] imageData, @Nullable Integer id);
+    
+    Image findImageByImageId(int imageId);
+
     Image save(Image image);
-    @Override
+    
     List<Image> findAll();
 }

@@ -1,4 +1,4 @@
-import { Routes, provideRouter } from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { MenuComponent } from './components/menu/menu.component';
 import { AdminComponent } from './components/admin/admin.component';
@@ -12,6 +12,8 @@ import { LoginComponent } from './components/login/login.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { adminAuthGuard } from '../AuthGuards/admin-auth.guard';
 import { customerAuthGuard } from '../AuthGuards/customer-auth.guard';
+import { PaymentSuccessComponent } from './components/payment-success/payment-success.component';
+import { PaymentFailComponent } from './components/payment-fail/payment-fail.component';
 
 export const routes: Routes = [
     { path:'search', component:MenuComponent},
@@ -36,7 +38,9 @@ export const routes: Routes = [
   {path:'login',component:LoginComponent},
 
   {path:'register', component:RegisterComponent},
+  { path: 'payment-success', component: PaymentSuccessComponent },
 
+  { path: 'payment-error', component: PaymentFailComponent },
 
   { path: '404', component: PageNotFoundComponent },
   { path: '**', redirectTo: '404' },

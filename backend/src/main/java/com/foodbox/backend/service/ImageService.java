@@ -2,30 +2,33 @@ package com.foodbox.backend.service;
 
 import com.foodbox.backend.entity.Image;
 import com.foodbox.backend.repository.ImageRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class ImageService {
-    ImageRepository imageRepository;
+    
+    @Autowired
+    private ImageRepository imageRepository;
+   
 
-    ImageService(ImageRepository imageRepository){
-        this.imageRepository = imageRepository;
-    }
+  
     public Image getImageById(int imageId) {
-        return this.imageRepository.getImageById(imageId);
+        return this.imageRepository.findImageByImageId(imageId);
     }
 
-    public Image createImage(String name,byte[] data)  {
+    public Image createImage(byte[] data)  {
         
-    Image image = new Image(name,data);
+    Image image = new Image(data);
     return this.imageRepository.save(image);
     }
 
     public void updateImage(int imageId, byte[] image) {
 
-         imageRepository.updateImageDataById(image, imageId);    }
+         imageRepository.updateImage(image, imageId);    }
 
     public void deleteImage(int imageId) {
         imageRepository.deleteById(imageId);

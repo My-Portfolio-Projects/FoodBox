@@ -10,7 +10,7 @@
       </select>
     </div>
     <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-3">
-      <select name="filter" class="form-select rounded-0 border-0" id="filter" [(ngModel)]="filter">
+      <select name="filter" class="form-select rounded-0 border-0" id="filter" [(ngModel)]="filter" (change)="onFilter()">
         <option value="" disabled selected>Filter</option>
         <option value="0">Fresh 'n' Hot</option>
         <option value="1">Best Selling</option>
@@ -27,16 +27,16 @@
       <div class="card m-auto my-2 rounded-0  shadow border-light-subtle border-2">
         <img [src]="'data:image/jpg;base64,' +  (product.image.imageData)" class="card-img-top rounded-0"
           alt="{{product.name}}">
-                        <!-- <span *ngIf="this.product.offer > 0" class="position-absolute top-0 end-0 p-2 m-2  badge rounded-pill bg-success text-white">{{this.product.offer}}%OFF</span>--> 
+                        <!-- <span *ngIf="this.product.offer > 0" class="position-absolute top-0 end-0 p-2 m-2  badge rounded-pill bg-success text-white">{{this.product.offer}}%OFF</span>-->
          <div class="card-body">
           <h5 class="card-title position-relative">{{product.name}}
           </h5>
           <p class="card-text">{{product.description}}</p>
           <p><b>Price:</b> ${{this.product.price}}</p>
 
-                                       <a routerLink="checkout" *ngIf="product.quantityInStock != 0"  class="btn w-100 my-1 rounded-0 text-light" style="background-color: #EF0B01">Order now</a>
-                             <button href="#" [hidden]="ProductMap.get(product.productId) === true" class="btn btn-primary w-100 my-1 rounded-0" (click)="addToCart(product)">Add To Cart </button>
-                             <button href="#" [hidden]="ProductMap.get(product.productId) === false" class="btn btn-warning w-100 my-1 rounded-0" (click)="removeItem(product.productId)">Remove From Cart </button>
+                                       <!-- <a routerLink="checkout" *ngIf="product.quantityInStock != 0"  class="btn w-100 my-1 rounded-0 text-light" style="background-color: #EF0B01">Order now</a> -->
+                             <button href="#" [hidden]="ProductMap.get(product.productId) === true" class="btn w-100 my-1 rounded-0 text-light" (click)="addToCart(product)" style="background-color: #EF0B01">Add To Cart </button>
+                             <button href="#" [hidden]="ProductMap.get(product.productId) === false" class="btn btn-warning w-100 my-1 rounded-0" (click)="removeFromCart(product.productId)">Remove From Cart </button>
 
         </div>
       </div>

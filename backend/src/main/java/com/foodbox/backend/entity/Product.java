@@ -18,7 +18,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "product_id")
-    private int productId;
+    private Integer productId;
     @Basic
     @Column(name = "name")
     private String name;
@@ -30,9 +30,9 @@ public class Product {
     private BigDecimal price;
     @Basic
     @Column(name = "quantity_in_stock")
-    private int quantityInStock;
+    private Integer quantityInStock;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     @JoinColumn(name = "image_id", referencedColumnName = "image_id")
     private Image image;
     

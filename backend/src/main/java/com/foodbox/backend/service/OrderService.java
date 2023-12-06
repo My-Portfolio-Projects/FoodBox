@@ -35,4 +35,9 @@ public class OrderService {
     public void deleteOrder(int orderId) {
         orderRepository.deleteOrderByOrderId(orderId);
     }
+
+    public void deleteOrders(int customerId) {
+                orderRepository.deleteOrderByCustomerId(customerId);
+
+    }
 }
